@@ -1,5 +1,5 @@
 import {Amplify} from 'aws-amplify'
-import {getCurrentUser, signInWithRedirect} from "aws-amplify/auth"
+import {getCurrentUser, signInWithRedirect, signOut} from "aws-amplify/auth"
 
 import './style.css'
 import {config} from '../config'
@@ -26,11 +26,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     hello
     <button id="sign-in">サインイン（Hosted UI）</button>
+    <button id="sign-out">サインアウト</button>
   </div>
 `
 
 document.querySelector('#sign-in')!.addEventListener('click', async () => {
   await signInWithRedirect();
+});
+
+document.querySelector('#sign-out')!.addEventListener('click', async () => {
+  await signOut();
 });
 
 window.addEventListener("load", async () => {
