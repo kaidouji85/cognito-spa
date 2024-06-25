@@ -9,6 +9,7 @@
 ## セットアップ
 * Cognitoのユーザープールを以下条件で作成する
   * Hosted UIを有効にする
+    * スコープにopenid, email, profile、phone、aws.cognito.signin.user.adminを追加する 
   * 許可されているコールバック URL、許可されているサインアウト URLに```http://localhost:5173```を設定する
 * 本リポジトリ直下で以下コマンドを実行する
 ```bash

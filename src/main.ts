@@ -1,5 +1,5 @@
 import {Amplify} from 'aws-amplify'
-import {getCurrentUser, signInWithRedirect, signOut} from "aws-amplify/auth"
+import {getCurrentUser, fetchUserAttributes, signInWithRedirect, signOut} from "aws-amplify/auth"
 
 import './style.css'
 import {config} from '../config'
@@ -12,7 +12,13 @@ Amplify.configure({
       loginWith: {
         oauth: {
           domain: config.hostedUIDomain,
-          scopes: ['openid'],
+          scopes: [
+            'openid',
+            'email',
+            'profile',
+            'phone',
+            'aws.cognito.signin.user.admin'
+          ],
           redirectSignIn: [config.redirectURL],
           redirectSignOut: [config.redirectURL],
           responseType: 'code',
@@ -30,15 +36,18 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 
-document.querySelector('#sign-in')!.addEventListener('click', async () => {
+document.querySelector('#sign-in')?.addEventListener('click', async () => {
   await signInWithRedirect();
 });
 
-document.querySelector('#sign-out')!.addEventListener('click', async () => {
+document.querySelector('#sign-out')?.addEventListener('click', async () => {
   await signOut();
 });
 
 window.addEventListener("load", async () => {
   const user = await getCurrentUser();
   console.log(user);
+
+  const userAttributes = await fetchUserAttributes();
+  console.log(userAttributes);
 });
