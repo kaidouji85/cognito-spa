@@ -35,6 +35,8 @@ CognitoのアイデンティティプロバイダーにGoogleを以下条件で�
 | picture            | picture  |
 | preferred_username | name     |
 
+CgonitoのホストされたUIのID プロバイダーにGoogleを追加する。
+
 ## セットアップ
 
 * 本リポジトリ直下で以下コマンドを実行する
