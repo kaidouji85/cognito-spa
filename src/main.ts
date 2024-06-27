@@ -1,5 +1,12 @@
 import {Amplify} from 'aws-amplify'
-import {deleteUser, getCurrentUser, fetchUserAttributes, signInWithRedirect, signOut} from "aws-amplify/auth"
+import {
+  deleteUser,
+  getCurrentUser,
+  fetchAuthSession,
+  fetchUserAttributes,
+  signInWithRedirect,
+  signOut
+} from "aws-amplify/auth"
 
 import './style.css'
 import {config} from '../config'
@@ -33,6 +40,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h2>amplifyのサンドボックス</h2>
     <div class="cognito-spa__caption">各種関数の実行結果はconsoleに出力される。</div>
     <button id="sign-in">サインイン（Hosted UI）</button>
+    <button id="fetch-auth-session">fetchAuthSession</button>
     <button id="get-current-user">getCurrentUser</button>
     <button id="fetch-user-attributes">fetchUserAttributes</button>
     <button id="delete-user">deleteUser</button>
@@ -42,6 +50,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 document.querySelector('#sign-in')?.addEventListener('click', async () => {
   await signInWithRedirect();
+});
+
+document.querySelector('#fetch-auth-session')?.addEventListener('click', async () => {
+  const authSession = await fetchAuthSession();
+  console.log(authSession);
 });
 
 document.querySelector('#get-current-user')?.addEventListener('click', async () => {
