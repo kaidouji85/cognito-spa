@@ -29,9 +29,12 @@ Amplify.configure({
 });
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    hello
+  <div class="cognito-spa">
+    amplify.jsのサンドボックス。
+    各種関数の実行結果はコンソールに表示される。
     <button id="sign-in">サインイン（Hosted UI）</button>
+    <button id="get-current-user">getCurrentUser</button>
+    <button id="fetch-user-attributes">fetchUserAttributes</button>
     <button id="sign-out">サインアウト</button>
   </div>
 `
@@ -40,14 +43,16 @@ document.querySelector('#sign-in')?.addEventListener('click', async () => {
   await signInWithRedirect();
 });
 
-document.querySelector('#sign-out')?.addEventListener('click', async () => {
-  await signOut();
-});
-
-window.addEventListener("load", async () => {
+document.querySelector('#get-current-user')?.addEventListener('click', async () => {
   const user = await getCurrentUser();
   console.log(user);
+});
 
+document.querySelector('#fetch-user-attributes')?.addEventListener('click', async () => {
   const userAttributes = await fetchUserAttributes();
   console.log(userAttributes);
+});
+
+document.querySelector('#sign-out')?.addEventListener('click', async () => {
+  await signOut();
 });
