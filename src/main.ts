@@ -55,11 +55,13 @@ document.querySelector('#fetch-user-attributes')?.addEventListener('click', asyn
 });
 
 document.querySelector('#delete-user')?.addEventListener('click', async () => {
+  // ユーザー削除に成功するとサインアウトされる
+  // 正確にはOAuthSignOutにリダイレクトされ、そこから本ページに再度リダイレクトしている
   await deleteUser();
 });
 
 document.querySelector('#sign-out')?.addEventListener('click', async () => {
   // サインアウトに成功するとページがリロードされる
-  // 正確にはサインアウト専用サイトにリダイレクトされ、そこから本ページに再度リダイレクトしている
+  // 正確にはOAuthSignOutにリダイレクトされ、そこから本ページに再度リダイレクトしている
   await signOut();
 });
