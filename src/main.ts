@@ -1,5 +1,5 @@
 import {Amplify} from 'aws-amplify'
-import {getCurrentUser, fetchUserAttributes, signInWithRedirect, signOut} from "aws-amplify/auth"
+import {deleteUser, getCurrentUser, fetchUserAttributes, signInWithRedirect, signOut} from "aws-amplify/auth"
 
 import './style.css'
 import {config} from '../config'
@@ -35,6 +35,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <button id="sign-in">サインイン（Hosted UI）</button>
     <button id="get-current-user">getCurrentUser</button>
     <button id="fetch-user-attributes">fetchUserAttributes</button>
+    <button id="delete-user">deleteUser</button>
     <button id="sign-out">サインアウト</button>
   </div>
 `
@@ -53,6 +54,12 @@ document.querySelector('#fetch-user-attributes')?.addEventListener('click', asyn
   console.log(userAttributes);
 });
 
+document.querySelector('#delete-user')?.addEventListener('click', async () => {
+  await deleteUser();
+});
+
 document.querySelector('#sign-out')?.addEventListener('click', async () => {
+  // サインアウトに成功するとページがリロードされる
+  // 正確にはサインアウト専用サイトにリダイレクトされ、そこから本ページに再度リダイレクトしている
   await signOut();
 });
