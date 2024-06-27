@@ -100,3 +100,7 @@ button:focus-visible {
   flex-direction: column;
   gap: 0.5em;
 }
+
+.cognito-spa__caption {
+  margin-bottom: 2em;
+}

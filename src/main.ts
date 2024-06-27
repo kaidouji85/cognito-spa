@@ -30,8 +30,8 @@ Amplify.configure({
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="cognito-spa">
-    amplify.jsのサンドボックス。
-    各種関数の実行結果はコンソールに表示される。
+    <h2>amplifyのサンドボックス</h2>
+    <div class="cognito-spa__caption">各種関数の実行結果はconsoleに出力される。</div>
     <button id="sign-in">サインイン（Hosted UI）</button>
     <button id="get-current-user">getCurrentUser</button>
     <button id="fetch-user-attributes">fetchUserAttributes</button>
