@@ -55,9 +55,13 @@ document.querySelector('#sign-in')?.addEventListener('click', async () => {
 document.querySelector('#fetch-auth-session')?.addEventListener('click', async () => {
   const authSession = await fetchAuthSession();
   console.log(authSession);
+
   // APIに渡すアクセストークンはこのように取得する
   const accessToken = authSession.tokens?.accessToken.toString() ?? "";
   console.log(accessToken);
+
+  const idToken = authSession.tokens?.idToken?.toString();
+  console.log(idToken);
 });
 
 document.querySelector('#get-current-user')?.addEventListener('click', async () => {
